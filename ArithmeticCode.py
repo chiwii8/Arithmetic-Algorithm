@@ -31,10 +31,13 @@ class ArithmeticCodding:
         self.half = 1 << (precision - 1)
         self.quarter = self.half >> 1
 
-    def encode(self, message):
+    def encode(self, message, show_table=True):
         frequencytable = FrequencyTable()
         for c in message:
             frequencytable.add(c)
+
+        if show_table:
+            frequencytable.show_table()
 
         total = frequencytable.nsymbols
         symbols = list(frequencytable.frequencies.keys())
@@ -165,6 +168,8 @@ class ArithmeticCodding:
                 code = (code << 1) | next(bit_iter, 0)
 
         return result
+
+
 
 
 if __name__ == "__main__":
