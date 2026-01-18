@@ -1,7 +1,7 @@
 """ Implementation of the Arithmetic code without normalization
     This is doing for chains of text using float, only use with short words"""
 
-from Arithmetic_Table import FrequencyTable
+from src.Arithmetic_Table import FrequencyTable
 class ArithCodding:
     def __init__(self):
         self.precision = 32

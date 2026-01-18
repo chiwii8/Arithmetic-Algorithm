@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "Arith"
 version = "0.0.1"
@@ -7,3 +11,6 @@ authors = [
 description = "Arithmetic coding."
 readme = "README.md"
 requires-python = ">=3.7"
+
+[tool.setuptools.packages.find]
+where = ["src"]
