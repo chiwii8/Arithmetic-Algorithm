@@ -1,4 +1,4 @@
-from src.arith_codding.Arithmetic_Table import FrequencyTable
+from Arithmetic_Table import FrequencyTable
 
 
 def bits_to_bytes(bits):
