@@ -1,0 +1,9 @@
+[project]
+name = "Arith Code"
+version = "0.0.1"
+authors = [
+  { name="Alejandro Sánchez Rodríguez" },
+]
+description = "Arithmetic coding."
+readme = "README.md"
+requires-python = ">=3.7"
