@@ -228,4 +228,4 @@ if __name__ == "__main__":
     print("Decodificado")
     decoded = arith.decode(bits2, table2)
 
-    print(decoded)
+    print("".join(decoded))
