@@ -21,8 +21,9 @@ def bytes_to_bits(data):
     return bits
 
 
+# Real number out of range 8
 def EOF():
-    return '\0'
+    return 256
 
 
 class FrequencyTable:
@@ -141,7 +142,7 @@ class ArithmeticCodding:
 
             # tabla de frecuencias
             for s, freq in table.frequencies.items():
-                f.write(s.encode("utf-8"))
+                f.write(s.to_bytes(2, "big"))
                 f.write(freq.to_bytes(4, "big"))
 
             # bits comprimidos
@@ -154,7 +155,7 @@ class ArithmeticCodding:
 
             table = FrequencyTable()
             for _ in range(n_symbols):
-                symbol = f.read(1).decode("utf-8")
+                symbol = int.from_bytes(f.read(2), "big")
                 freq = int.from_bytes(f.read(4), "big")
                 table.frequencies[symbol] = freq
                 table.alphabet.append(symbol)
@@ -216,16 +217,20 @@ class ArithmeticCodding:
 
 if __name__ == "__main__":
     arith = ArithmeticCodding()
-    message = "Esto es un texto de prueba\0"
+    message = "Esto es un texto de prueba"
+    data = list(message.encode("utf-8"))
+    data.append(EOF())
 
-    print("Codificando:")
+    print("Codificando: ...")
     print(message)
 
-    bits, table = arith.encode(message)
+    bits, table = arith.encode(data)
     arith.write("compressed.bin", bits, table)
 
     bits2, table2 = arith.read("compressed.bin")
-    print("Decodificado")
+    print("Decodificado: ...")
     decoded = arith.decode(bits2, table2)
 
-    print("".join(decoded))
+    decoded_text = bytes(decoded).decode("utf-8")
+
+    print(decoded_text)
