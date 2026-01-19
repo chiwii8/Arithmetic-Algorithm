@@ -178,7 +178,7 @@ class ArithmeticCodding:
         for _ in range(self.precision):
             code = (code << 1) | next(bit_iter, 0)
 
-        result = ""
+        result = []
 
         while True:
             range_width = high - low + 1
@@ -188,7 +188,7 @@ class ArithmeticCodding:
                 if r_low <= value < r_high:
                     if s == EOF():
                         return result
-                    result += s
+                    result.append(s)
                     high = low + (range_width * r_high // total) - 1
                     low = low + (range_width * r_low // total)
                     break
